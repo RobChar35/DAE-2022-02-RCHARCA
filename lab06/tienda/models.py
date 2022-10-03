@@ -1,4 +1,5 @@
 from email.policy import default
+from enum import unique
 from statistics import mode
 from django.db import models
 
@@ -11,7 +12,7 @@ class Categoria(models.Model):
         return self.nombre
 
 class Producto(models.Model):
-    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, default=True, null=False)
     nombre = models.CharField(max_length=200)
     precio = models.DecimalField(max_digits=6, decimal_places=2)
     stock = models.IntegerField(default=0)
